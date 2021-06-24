@@ -1,7 +1,7 @@
 **TO-DO**
 
-- Добавить другие атрибуты form
-- Добавить классы для формы
+- ~~Добавить другие атрибуты form~~
+- ~~Добавить классы для формы~~
 - Добавить другие атрибуты input
 - Добавить другие элементы формы
 - Добавить групировку
@@ -41,10 +41,10 @@
 ```html
 <form action="www.example.com">
   <label for="last_name">Фамилия</label>
-  <input type="text" id="last_name"/>
+  <input type="text" id="last_name" />
 
   <label for="first_name">Возраст</label>
-  <input type="number" id="age"/>
+  <input type="number" id="age" />
 
   <button>Отправить</button>
 
@@ -55,13 +55,15 @@
 ```
 
 **Атрибуты form:**
+
 - !action: url
 - method: post / get
 - autocomplete: off / on
 - novalidate: boolean
 
 **Атрибуты input:**
-- type: 
+
+- type:
 - id: text
 - name: text
 - checked: boolean
@@ -71,12 +73,13 @@
 - min: number
 - max: number
 - minlength: number
-- multiple: 
+- multiple:
 - placeholder: text
-- readonly: 
+- readonly:
 - value
 
 **Элементы форм**
+
 - input
 - datalist (option)
 - select (option)
@@ -85,6 +88,7 @@
 - textarea
 
 **Виды input**
+
 - text
 - checkbox
 - radio

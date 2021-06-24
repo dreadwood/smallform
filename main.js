@@ -1,62 +1,87 @@
-"use strict";
+import { generationMock } from "/mock.js";
 
 const RenderPosition = {
   AFTER_BEGIN: `afterbegin`,
   BEFOR_END: `beforeend`,
 };
 
-const mock =
-  '"inputs":[{"label":"Фамилия","type":"text","id":"last_name"},{"label":"Возраст","type":"number","id":"age"}],"submit": {"url":"www.example.com","text": "Отправить"}';
-
 const createFormTemplate = (data) => {
+  const className = data.class ? `class="${data.class}"` : "";
+  const method = data.method ? `method="${data.method}"` : "";
+  const autocomplete = `autocomplete="${
+    data.autocomplete ? data.autocomplete : "off"
+  }"`;
+  const enctype = data.enctype ? `enctype="${data.enctype}"` : "";
+
   return `<form 
-      class=${data.class}" 
       action="${data.url}" 
-      method="${data.method || null}"
-      autocomplete="${data.autocomplete || null}"
-      enctype="${data.enctype || null}"
+      ${className}
+      ${method}
+      ${autocomplete}
+      ${enctype}
     >
       <button type="submit">${data.text}</button>
     </form>`;
 };
 
 const createInputTemplate = (data) => {
+  const className = data.class ? `class="${data.class}"` : "";
+  const autocomplete = `autocomplete="${
+    data.autocomplete ? data.autocomplete : "off"
+  }"`;
+  const required = data.required ? "required" : "";
+  const checked = data.checked ? "checked" : "";
+
   return `<label for="${data.id}">${data.label}</label>
     <input 
-      class=${data.class}" 
       type="${data.type}" 
       id="${data.id}" 
       name="${data.name}" 
-      checked="${data.checked}" 
-      autocomplete="${data.autocomplete || null}"
-      ${required ? "required" : null}"
+      ${className}
+      ${checked}
+      ${autocomplete}
+      ${required}
     >`;
 };
 
-const createTextariaTemplate = (data) => {
+const createTextareaTemplate = (data) => {
+  const className = data.class ? `class="${data.class}"` : "";
+  const autocomplete = `autocomplete="${
+    data.autocomplete ? data.autocomplete : "off"
+  }"`;
+  const required = data.required ? "required" : "";
+
   return `<label for="${data.id}">${data.label}</label>
-    <textaria 
-      class=${data.class}" 
+    <textarea 
       id="${data.id}" 
       name="${data.name}" 
-      autocomplete="${data.autocomplete || null}"
-      ${required ? "required" : null}"
-    ></textaria>`;
+      ${className}
+      ${autocomplete}
+      ${required}
+    ></textarea>`;
 };
 
 const renderTemplate = (
   container,
   template,
   place = RenderPosition.BEFOR_END
-) => {
-  container.insertAdjacentHTML(place, template);
-};
+) => container.insertAdjacentHTML(place, template);
 
-// Изменить имя
 const generateForm = (container, data) => {
+  container.textContent = "";
   renderTemplate(container, createFormTemplate(data.submit));
 
   const formElement = container.querySelector("form");
+  if (data.textarea) {
+    data.textarea.forEach((textareaValue) =>
+      renderTemplate(
+        formElement,
+        createTextareaTemplate(textareaValue),
+        RenderPosition.AFTER_BEGIN
+      )
+    );
+  }
+
   if (data.inputs) {
     data.inputs.forEach((input) =>
       renderTemplate(
@@ -70,6 +95,10 @@ const generateForm = (container, data) => {
 
 const rootElement = document.querySelector("#root");
 const exampleElement = document.querySelector(".example");
+const textariaElement = exampleElement.querySelector(".example__text");
+
+console.log(generationMock());
+textariaElement.textContent = generationMock();
 
 if (exampleElement) {
   const exampleTextElement = exampleElement.querySelector(".example__text");
