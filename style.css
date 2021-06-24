@@ -1,0 +1,13 @@
+.example {
+  width: min-content;
+  margin-bottom: 20px;
+}
+
+.example__text {
+
+}
+
+.example__btn {
+  display: block;
+  margin-left: auto;
+}

@@ -3,10 +3,39 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Генератор форм</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <h1>Генератор форм</h1>
+
+  <h2>Пример</h2>
+  <div class="example">
+    <textarea class="example__text" cols="60" rows="20">
+    {
+      "inputs": [
+        {
+          "label": "Фамилия",
+          "type": "text",
+          "id": "last_name"
+        },
+        {
+          "label": "Возраст",
+          "type": "number",
+          "id": "age"
+        }
+      ],
+      "submit": {
+        "url": "www.example.com",
+        "text": "Отправить"
+      }
+    }
+    </textarea>
+    <button class="example__btn">Преобразовать</button>
+  </div>
+
   <div id="root"></div>
+
   <script src="main.js"></script>
 </body>
 </html>
