@@ -9,8 +9,14 @@ const mock = '"inputs":[{"label":"Фамилия","type":"text","id":"last_name"
 
 const createFormTemplate = (data) => {
   return (
-    `<form action="${data.url}">
-      <button>${data.text}</button>
+    `<form 
+      class=${data.class}" 
+      action="${data.url}" 
+      method="${data.method || null}"
+      autocomplete="${data.autocomplete || null}"
+      enctype="${data.enctype || null}"
+    >
+      <button type="submit">${data.text}</button>
     </form>`
   )
 };
@@ -18,55 +24,47 @@ const createFormTemplate = (data) => {
 const createInputTemplate = (data) => {
   return (
     `<label for="${data.id}">${data.label}</label>
-    <input type="${data.type}" id="${data.id}"/>`
+    <input 
+      class=${data.class}" 
+      type="${data.type}" 
+      id="${data.id}" 
+      name="${data.name}" 
+      checked="${data.checked}" 
+      autocomplete="${data.autocomplete || null}"
+      ${required ? 'required' : null}"
+    >`
   )
 };
 
-function generateInput(data) {
-  const fragment = document.createDocumentFragment();
-
-  const labelElement = document.createElement('label');
-  if (data.label) {
-    inputElement.setAttribute('type', data.label);
-  }
-  if (data.id) {
-    inputElement.setAttribute('for', data.id);
-  }
-
-  const inputElement = document.createElement('input');
-  if (data.type) {
-    inputElement.setAttribute('type', data.type);
-  }
-  if (data.id) {
-    inputElement.setAttribute('id', data.id);
-  }
-
-  fragment.appendChild(labelElement);
-  fragment.appendChild(inputElement);
-
-  return fragment;
-}
-
-function generateForm(data) {
-  const formElement = document.createElement('form');
-  if (data.url) {
-    formElement.setAttribute('action', data.url);
-  }
-
-  const btnSubmitElement = document.createElement('button');
-  if (data.text) {
-    btnSubmitElement.textContent = data.text;
-  }
-
-  formElement.appendChild(btnSubmitElement);
-
-  return formElement;
-}
+const createTextariaTemplate = (data) => {
+  return (
+    `<label for="${data.id}">${data.label}</label>
+    <textaria 
+      class=${data.class}" 
+      id="${data.id}" 
+      name="${data.name}" 
+      autocomplete="${data.autocomplete || null}"
+      ${required ? 'required' : null}"
+    ></textaria>`
+  )
+};
 
 const renderTemplate = (container, template, place = RenderPosition.BEFOR_END) => {
   container.insertAdjacentHTML(place, template);
 };
 
+const generateForm = (container, data) => { // Изменить имя
+  renderTemplate(container, createFormTemplate(data.submit));
+
+  const formElement = container.querySelector('form');
+  if (data.inputs) {
+    data.inputs.forEach((input) => renderTemplate(
+      formElement, 
+      createInputTemplate(input), 
+      RenderPosition.AFTER_BEGIN
+    ));
+  }
+}
 
 const rootElement = document.querySelector('#root');
 const exampleElement = document.querySelector('.example');
@@ -78,13 +76,7 @@ if (exampleElement) {
   exampleBtnElement.addEventListener('click', () => {
     const data = JSON.parse(exampleTextElement.value);
 
-    renderTemplate(rootElement, createFormTemplate(data.submit));
-
-    const formElement = rootElement.querySelector('form');
-    data.inputs.forEach((input) => {
-      renderTemplate(formElement, createInputTemplate(input), RenderPosition.AFTER_BEGIN);
-    });
-
+    generateForm(rootElement, data)
     console.log(data);
   })
 };

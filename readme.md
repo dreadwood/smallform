@@ -1,6 +1,7 @@
 **TO-DO**
 
 - Добавить другие атрибуты form
+- Добавить классы для формы
 - Добавить другие атрибуты input
 - Добавить другие элементы формы
 - Добавить групировку
@@ -53,3 +54,46 @@
 </form>
 ```
 
+**Атрибуты form:**
+- !action: url
+- method: post / get
+- autocomplete: off / on
+- novalidate: boolean
+
+**Атрибуты input:**
+- type: 
+- id: text
+- name: text
+- checked: boolean
+- autocomplete: off / on
+- disabled: boolean
+- required: boolean
+- min: number
+- max: number
+- minlength: number
+- multiple: 
+- placeholder: text
+- readonly: 
+- value
+
+**Элементы форм**
+- input
+- datalist (option)
+- select (option)
+- button
+- label
+- textarea
+
+**Виды input**
+- text
+- checkbox
+- radio
+- email
+- file
+- hidden
+- password
+- range
+- search
+- tel
+- ?datetime
+- ?date
