@@ -89,15 +89,21 @@
 
 **Виды input**
 
-- text
-- checkbox
-- radio
-- email
-- file
 - hidden
-- password
-- range
+
+- text
+- email
 - search
 - tel
+- password
+- number
+
+- checkbox
+- radio
+
+- file
+
+- range
+
 - ?datetime
 - ?date
