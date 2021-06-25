@@ -24,24 +24,73 @@ const createFormTemplate = (data) => {
     </form>`;
 };
 
-const createInputTemplate = (data) => {
+const createInputTagTemplate = (data) => {
   const className = data.class ? `class="${data.class}"` : "";
+  const required = data.required ? "required" : "";
   const autocomplete = `autocomplete="${
     data.autocomplete ? data.autocomplete : "off"
   }"`;
-  const required = data.required ? "required" : "";
-  const checked = data.checked ? "checked" : "";
+  const checked =
+    data.checked && (data.type === "checkbox" || data.type === "radio")
+      ? "checked"
+      : "";
+  const placeholder =
+    data.placeholder && !(data.type === "checkbox" && data.type === "radio")
+      ? `placeholder="${data.placeholder}"`
+      : "";
 
-  return `<label for="${data.id}">${data.label}</label>
-    <input 
-      type="${data.type}" 
-      id="${data.id}" 
-      name="${data.name}" 
-      ${className}
-      ${checked}
-      ${autocomplete}
-      ${required}
-    >`;
+  return `<input 
+    type="${data.type}" 
+    id="${data.id}" 
+    name="${data.name}" 
+    ${className}
+    ${checked}
+    ${autocomplete}
+    ${required}
+    ${placeholder}
+  >`;
+};
+
+const createLabelTagTemplate = (data) => {
+  return `<label for="${data.id}">${data.label}</label>`;
+};
+
+const createInputTemplate = (data) => {
+  let template;
+  if (data.type === "checkbox") {
+    template = `
+      ${createInputTagTemplate(data)}
+      ${createLabelTagTemplate(data)}
+    `;
+  } else if (data.type === "radio") {
+    //
+    const valueTemplate = data.value
+      .map((item, i) => {
+        const dataValue = Object.assign(
+          { type: data.type, name: data.name, id: data.name + i },
+          item
+        );
+
+        return `
+          ${createInputTagTemplate(dataValue)}
+          ${createLabelTagTemplate(dataValue)}
+        `;
+      })
+      .join("");
+
+    template = `<fieldset>
+      <legend>${data.label}</legend>
+      ${valueTemplate}
+    </fieldset>`;
+    //
+  } else {
+    template = `
+      ${createLabelTagTemplate(data)}
+      ${createInputTagTemplate(data)}
+    `;
+  }
+
+  return template;
 };
 
 const createTextareaTemplate = (data) => {
@@ -73,23 +122,27 @@ const generateForm = (container, data) => {
 
   const formElement = container.querySelector("form");
   if (data.textarea) {
-    data.textarea.forEach((textareaValue) =>
-      renderTemplate(
-        formElement,
-        createTextareaTemplate(textareaValue),
-        RenderPosition.AFTER_BEGIN
-      )
-    );
+    data.textarea
+      .reverse()
+      .forEach((textareaValue) =>
+        renderTemplate(
+          formElement,
+          createTextareaTemplate(textareaValue),
+          RenderPosition.AFTER_BEGIN
+        )
+      );
   }
 
   if (data.inputs) {
-    data.inputs.forEach((input) =>
-      renderTemplate(
-        formElement,
-        createInputTemplate(input),
-        RenderPosition.AFTER_BEGIN
-      )
-    );
+    data.inputs
+      .reverse()
+      .forEach((input) =>
+        renderTemplate(
+          formElement,
+          createInputTemplate(input),
+          RenderPosition.AFTER_BEGIN
+        )
+      );
   }
 };
 
@@ -97,7 +150,6 @@ const rootElement = document.querySelector("#root");
 const exampleElement = document.querySelector(".example");
 const textariaElement = exampleElement.querySelector(".example__text");
 
-console.log(generationMock());
 textariaElement.textContent = generationMock();
 
 if (exampleElement) {
@@ -108,6 +160,5 @@ if (exampleElement) {
     const data = JSON.parse(exampleTextElement.value);
 
     generateForm(rootElement, data);
-    console.log(data);
   });
 }
