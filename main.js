@@ -55,52 +55,67 @@ const createLabelTagTemplate = (data) => {
   return `<label for="${data.id}">${data.label}</label>`;
 };
 
-const createInputTemplate = (data) => {
-  let template;
-  if (data.type === "checkbox") {
-    template = `
-      ${createInputTagTemplate(data)}
-      ${createLabelTagTemplate(data)}
-    `;
-  } else if (data.type === "radio") {
-    //
-    const valueTemplate = data.value
-      .map((item, i) => {
-        const dataValue = Object.assign(
-          { type: data.type, name: data.name, id: data.name + i },
-          item
-        );
+const createOptionTagTemplate = (data) => {
+  const selected = data.checked ? "selected" : "";
+  return `<option value="${data.name}" ${selected}>${data.label}</option>`;
+};
 
-        return `
-          ${createInputTagTemplate(dataValue)}
-          ${createLabelTagTemplate(dataValue)}
-        `;
-      })
-      .join("");
+const createFieldsetTagTemplate = (data) => {
+  const valueTemplate = data.value
+    .map((item, i) => {
+      const dataValue = {
+        ...item,
+        type: data.type,
+        name: data.name,
+        id: data.name + i,
+      };
+      return `${createInputTagTemplate(dataValue)}
+        ${createLabelTagTemplate(dataValue)}`;
+    })
+    .join("");
 
-    template = `<fieldset>
+  return `<fieldset>
       <legend>${data.label}</legend>
       ${valueTemplate}
     </fieldset>`;
-    //
-  } else {
-    template = `
-      ${createLabelTagTemplate(data)}
-      ${createInputTagTemplate(data)}
-    `;
-  }
-
-  return template;
 };
 
-const createTextareaTemplate = (data) => {
+const createInputValueTemplate = (data) => {
+  switch (data.type) {
+    case "checkbox":
+      return `${createInputTagTemplate(data)} ${createLabelTagTemplate(data)}`;
+    case "radio":
+      return createFieldsetTagTemplate(data);
+    default:
+      return `${createLabelTagTemplate(data)} ${createInputTagTemplate(data)}`;
+  }
+};
+
+const createSelectValueTemplate = (data) => {
+  const className = data.class ? `class="${data.class}"` : "";
+
+  const optionsTemplate = data.value
+    .map((item) => createOptionTagTemplate(item))
+    .join("");
+
+  return `${createLabelTagTemplate(data)}
+    <select 
+      id="${data.id}" 
+      name="${data.name} 
+      ${className} 
+    >
+      ${optionsTemplate}
+    </select>`;
+};
+
+const createTextareaValueTemplate = (data) => {
   const className = data.class ? `class="${data.class}"` : "";
   const autocomplete = `autocomplete="${
     data.autocomplete ? data.autocomplete : "off"
   }"`;
   const required = data.required ? "required" : "";
 
-  return `<label for="${data.id}">${data.label}</label>
+  return `${createLabelTagTemplate(data)}
     <textarea 
       id="${data.id}" 
       name="${data.name}" 
@@ -127,7 +142,19 @@ const generateForm = (container, data) => {
       .forEach((textareaValue) =>
         renderTemplate(
           formElement,
-          createTextareaTemplate(textareaValue),
+          createTextareaValueTemplate(textareaValue),
+          RenderPosition.AFTER_BEGIN
+        )
+      );
+  }
+
+  if (data.select) {
+    data.select
+      .reverse()
+      .forEach((selectValue) =>
+        renderTemplate(
+          formElement,
+          createSelectValueTemplate(selectValue),
           RenderPosition.AFTER_BEGIN
         )
       );
@@ -139,7 +166,7 @@ const generateForm = (container, data) => {
       .forEach((input) =>
         renderTemplate(
           formElement,
-          createInputTemplate(input),
+          createInputValueTemplate(input),
           RenderPosition.AFTER_BEGIN
         )
       );

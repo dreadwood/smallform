@@ -100,6 +100,39 @@ const generationMock = () => {
         autocomplete: "off",
       },
     ],
+    select: [
+      {
+        label: "Страна",
+        engLabel: "Country",
+        class: null,
+        name: "сountry",
+        id: "сountry",
+        required: true,
+        value: [
+          {
+            label: "Россия",
+            engLabel: "Russia",
+            name: "russia",
+          },
+          {
+            label: "Казахстан",
+            engLabel: "Kazakhstan",
+            name: "Казахстан",
+          },
+          {
+            label: "Фарерские острова",
+            engLabel: "Faroe Islands",
+            name: "faroes",
+          },
+          {
+            label: "Нордхейм",
+            engLabel: "Nordheim",
+            name: "nordheim",
+            checked: true,
+          },
+        ],
+      },
+    ],
     submit: {
       url: "www.example.com",
       text: "Отправить",
