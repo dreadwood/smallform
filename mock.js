@@ -136,6 +136,7 @@ const generationMock = () => {
     submit: {
       url: "www.example.com",
       text: "Отправить",
+      resetText: "Очистить",
       checkbox: "Я согласен отправлять свои данные в неизвестном направлении.",
     },
   };
