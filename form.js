@@ -120,7 +120,8 @@ const renderTemplate = (
   place = RenderPosition.BEFOR_END
 ) => container.insertAdjacentHTML(place, template);
 
-const generateForm = (container, data) => {
+const generateForm = (container, json) => {
+  const data = JSON.parse(json);
   container.textContent = "";
   renderTemplate(container, createFormTemplate(data.submit));
 

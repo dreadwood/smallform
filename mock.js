@@ -77,6 +77,7 @@ const generationMock = () => {
           {
             label: "Водительское удостоверение",
             engLabel: "Driver's license",
+            checked: true,
           },
           {
             label: "Студенческий",

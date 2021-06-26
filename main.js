@@ -1,18 +1,28 @@
 import { generationMock } from "/mock.js";
 import { generateForm } from "/form.js";
 
-const rootElement = document.querySelector("#root");
 const exampleElement = document.querySelector(".example");
-const textariaElement = exampleElement.querySelector(".example__text");
-
-textariaElement.textContent = generationMock();
 
 if (exampleElement) {
-  const exampleTextElement = exampleElement.querySelector(".example__text");
-  const exampleBtnElement = exampleElement.querySelector(".example__btn");
+  const inputElement = exampleElement.querySelector(".example__input");
+  const outputElement = exampleElement.querySelector(".example__output");
+  const btnElement = exampleElement.querySelector(".example__btn--generate");
+  const fileElement = exampleElement.querySelector(".example__file");
 
-  exampleBtnElement.addEventListener("click", () => {
-    const data = JSON.parse(exampleTextElement.value);
-    generateForm(rootElement, data);
+  inputElement.textContent = generationMock();
+
+  btnElement.addEventListener("click", () => {
+    generateForm(outputElement, inputElement.value);
+  });
+
+  fileElement.addEventListener("change", (evt) => {
+    const file = evt.target.files[0];
+    console.dir(file);
+
+    const reader = new FileReader();
+    reader.addEventListener("load", () => {
+      generateForm(outputElement, reader.result);
+    });
+    reader.readAsText(file);
   });
 }
