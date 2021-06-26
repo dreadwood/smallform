@@ -8,34 +8,52 @@
     <link rel="stylesheet" href="form.css" />
   </head>
   <body>
-    <h1>Генератор форм</h1>
+    <section class="example">
+      <div class="example__header">
+        <h1 class="example__title">Генератор форм</h1>
+        <p class="example__subtitle">
+          JS библиотека для преобразования JSON в HTML форму со стилями
+        </p>
+      </div>
 
-    <h2>Пример</h2>
-    <div class="example">
-      <textarea class="example__text" cols="60" rows="20">
+      <div class="example__fields">
+        <div class="example__input-wrp">
+          <textarea class="example__input">
+{
+  "inputs": [
     {
-      "inputs": [
-        {
-          "label": "Фамилия",
-          "type": "text",
-          "id": "last_name"
-        },
-        {
-          "label": "Возраст",
-          "type": "number",
-          "id": "age"
-        }
-      ],
-      "submit": {
-        "url": "www.example.com",
-        "text": "Отправить"
-      }
+      "label": "Фамилия",
+      "type": "text",
+      "id": "last_name"
+    },
+    {
+      "label": "Возраст",
+      "type": "number",
+      "id": "age"
     }
-      </textarea>
-      <button class="example__btn">Преобразовать</button>
-    </div>
+  ],
+  "submit": {
+    "url": "www.example.com",
+    "text": "Отправить"
+  }
+}
+          </textarea>
+          <input
+            class="visually-hidden example__file"
+            id="upload_file"
+            type="file"
+          />
+          <label class="example__btn example__btn--upload" for="upload_file"
+            >Загрузить JSON</label
+          >
+          <button class="example__btn example__btn--generate">
+            Преобразовать
+          </button>
+        </div>
 
-    <div id="root"></div>
+        <div class="example__output"></div>
+      </div>
+    </section>
 
     <script type="module" src="main.js"></script>
   </body>

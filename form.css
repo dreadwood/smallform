@@ -32,7 +32,7 @@ form {
   display: flex;
   flex-direction: column;
   width: 100%;
-  min-width: 280px;
+  min-width: 240px;
   padding: 20px;
   font-family: var(--font-common);
   background-color: var(--color-bg-form);
@@ -70,7 +70,11 @@ form input[type="number"]::-webkit-inner-spin-button {
   -webkit-appearance: none;
 }
 
-form input[type="number"]::-webkit-contacts-auto-fill-button {
+form input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+form input::-webkit-contacts-auto-fill-button {
   visibility: hidden;
 }
 
