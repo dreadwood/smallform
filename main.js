@@ -1,5 +1,3 @@
-import { generationMock } from "/mock.js";
-
 const exampleElement = document.querySelector(".example");
 
 if (exampleElement) {
