@@ -12,6 +12,14 @@ const generationMock = () => {
         required: true,
       },
       {
+        label: "Пароль",
+        engLabel: "Password",
+        class: null,
+        name: "password",
+        type: "password",
+        id: "password",
+      },
+      {
         label: "Фамилия",
         engLabel: "Last name",
         class: null,
@@ -118,7 +126,7 @@ const generationMock = () => {
           {
             label: "Казахстан",
             engLabel: "Kazakhstan",
-            name: "Казахстан",
+            name: "Kazakhstan",
           },
           {
             label: "Фарерские острова",
@@ -142,7 +150,7 @@ const generationMock = () => {
     },
   };
 
-  return JSON.stringify(mock, "false", true);
+  return JSON.stringify(mock, "false", 2);
 };
 
 export { generationMock };
