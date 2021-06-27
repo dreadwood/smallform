@@ -1,7 +1,7 @@
 /*
- * variables
+ * basic
  */
-:root {
+#small_form {
   --font-common: apple-system, system-ui, Helvetica Neue, Roboto, sans-serif;
   --color-bg-form: #ffffff;
   --color-bg-field: #f2f3f5;
@@ -17,18 +17,7 @@
   --color-border-focus: #3f8ae0;
   --color-line-hover: rgba(0, 0, 0, 0.04);
   --transition-function: 0.15s ease-out;
-}
 
-/*
- * global
- */
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
-form {
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -37,17 +26,24 @@ form {
   font-family: var(--font-common);
   background-color: var(--color-bg-form);
   border-radius: 8px;
+  box-sizing: border-box;
+}
+
+#small_form *,
+#small_form *::before,
+#small_form *::after {
+  box-sizing: inherit;
 }
 
 /*
  * input element 
  */
-form input[type="text"],
-form input[type="email"],
-form input[type="search"],
-form input[type="tel"],
-form input[type="number"],
-form input[type="password"] {
+#small_form input[type="text"],
+#small_form input[type="email"],
+#small_form input[type="search"],
+#small_form input[type="tel"],
+#small_form input[type="number"],
+#small_form input[type="password"] {
   display: block;
   width: 100%;
   margin-bottom: 12px;
@@ -64,52 +60,52 @@ form input[type="password"] {
   transition: border-color var(--transition-function);
 }
 
-form input[type="number"]::-webkit-outer-spin-button,
-form input[type="number"]::-webkit-inner-spin-button {
+#small_form input[type="number"]::-webkit-outer-spin-button,
+#small_form input[type="number"]::-webkit-inner-spin-button {
   margin: 0;
   -webkit-appearance: none;
 }
 
-form input[type="number"] {
+#small_form input[type="number"] {
   -moz-appearance: textfield;
 }
 
-form input::-webkit-contacts-auto-fill-button {
+#small_form input::-webkit-contacts-auto-fill-button {
   visibility: hidden;
 }
 
-form input[type="text"]:hover,
-form input[type="email"]:hover,
-form input[type="search"]:hover,
-form input[type="tel"]:hover,
-form input[type="number"]:hover,
-form input[type="password"]:hover {
+#small_form input[type="text"]:hover,
+#small_form input[type="email"]:hover,
+#small_form input[type="search"]:hover,
+#small_form input[type="tel"]:hover,
+#small_form input[type="number"]:hover,
+#small_form input[type="password"]:hover {
   border-color: var(--color-border-hover);
 }
 
-form input[type="text"]:focus,
-form input[type="email"]:focus,
-form input[type="search"]:focus,
-form input[type="tel"]:focus,
-form input[type="number"]:focus,
-form input[type="password"]:focus {
+#small_form input[type="text"]:focus,
+#small_form input[type="email"]:focus,
+#small_form input[type="search"]:focus,
+#small_form input[type="tel"]:focus,
+#small_form input[type="number"]:focus,
+#small_form input[type="password"]:focus {
   border-color: var(--color-border-focus);
   outline: none;
 }
 
-form input[type="text"]::placeholder,
-form input[type="email"]::placeholder,
-form input[type="search"]::placeholder,
-form input[type="tel"]::placeholder,
-form input[type="number"]::placeholder,
-form input[type="password"]::placeholder {
+#small_form input[type="text"]::placeholder,
+#small_form input[type="email"]::placeholder,
+#small_form input[type="search"]::placeholder,
+#small_form input[type="tel"]::placeholder,
+#small_form input[type="number"]::placeholder,
+#small_form input[type="password"]::placeholder {
   color: var(--color-text-ph);
 }
 
 /*
  * label element
  */
-form label {
+#small_form label {
   display: block;
   margin-top: 12px;
   margin-bottom: 6px;
@@ -121,7 +117,7 @@ form label {
 /*
  * fieldset element 
  */
-form fieldset {
+#small_form fieldset {
   padding: 0;
   margin: 0 0 6px 0;
   border: none;
@@ -130,7 +126,7 @@ form fieldset {
 /*
  * legend element 
  */
-form legend {
+#small_form legend {
   margin: 0;
   padding: 0;
   margin-top: 12px;
@@ -143,8 +139,8 @@ form legend {
 /*
  * checkbox + radio element 
  */
-form input[type="checkbox"],
-form input[type="radio"] {
+#small_form input[type="checkbox"],
+#small_form input[type="radio"] {
   position: absolute;
   width: 1px;
   height: 1px;
@@ -158,8 +154,8 @@ form input[type="radio"] {
   clip-path: inset(100%);
 }
 
-form input[type="checkbox"] + label,
-form input[type="radio"] + label {
+#small_form input[type="checkbox"] + label,
+#small_form input[type="radio"] + label {
   display: flex;
   align-items: center;
   margin-top: 2px;
@@ -173,17 +169,17 @@ form input[type="radio"] + label {
   transition: background-color var(--transition-function);
 }
 
-form input[type="radio"] + label {
+#small_form input[type="radio"] + label {
   margin-bottom: 0;
 }
 
-form input[type="checkbox"] + label:hover,
-form input[type="radio"] + label:hover {
+#small_form input[type="checkbox"] + label:hover,
+#small_form input[type="radio"] + label:hover {
   background-color: var(--color-line-hover);
   border-radius: 6px;
 }
 
-form input[type="checkbox"] + label::before {
+#small_form input[type="checkbox"] + label::before {
   content: "";
   display: block;
   width: 20px;
@@ -192,11 +188,11 @@ form input[type="checkbox"] + label::before {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20' id='check_box_off_20'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M4.046 2.534C4.788 2.138 5.517 2 7.128 2h5.744c1.61 0 2.34.138 3.082.534.65.348 1.164.862 1.512 1.512.396.742.534 1.471.534 3.082v5.744c0 1.61-.138 2.34-.534 3.082a3.644 3.644 0 01-1.512 1.512c-.742.396-1.472.534-3.082.534H7.128c-1.61 0-2.34-.138-3.082-.534a3.644 3.644 0 01-1.512-1.512C2.138 15.212 2 14.482 2 12.872V7.128c0-1.61.138-2.34.534-3.082a3.645 3.645 0 011.512-1.512zm3.082.966c-1.531 0-1.962.136-2.374.357a2.145 2.145 0 00-.897.897c-.22.412-.357.843-.357 2.374v5.744c0 1.531.136 1.962.357 2.374.208.389.508.69.897.897.412.22.843.357 2.374.357h5.744c1.531 0 1.962-.136 2.374-.357.389-.208.69-.508.897-.897.22-.412.357-.843.357-2.374V7.128c0-1.531-.136-1.962-.357-2.374a2.145 2.145 0 00-.897-.897c-.412-.22-.843-.357-2.374-.357H7.128z' fill='%23aeb7c2'%3E%3C/path%3E%3C/svg%3E");
 }
 
-form input[type="checkbox"]:checked + label:before {
+#small_form input[type="checkbox"]:checked + label:before {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20' id='check_box_on_20'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M2.436 4.184C2 5.04 2 6.16 2 8.4v3.2c0 2.24 0 3.36.436 4.216a4 4 0 001.748 1.748C5.04 18 6.16 18 8.4 18h3.2c2.24 0 3.36 0 4.216-.436a4 4 0 001.748-1.748C18 14.96 18 13.84 18 11.6V8.4c0-2.24 0-3.36-.436-4.216a4 4 0 00-1.748-1.748C14.96 2 13.84 2 11.6 2H8.4c-2.24 0-3.36 0-4.216.436a4 4 0 00-1.748 1.748zm12.2 3.803a.9.9 0 10-1.272-1.274l-4.673 4.665-2.055-2.052A.9.9 0 005.364 10.6l2.691 2.687a.9.9 0 001.272 0l5.309-5.3z' fill='%235181b8'%3E%3C/path%3E%3C/svg%3E");
 }
 
-form input[type="radio"] + label::before {
+#small_form input[type="radio"] + label::before {
   content: "";
   display: block;
   width: 20px;
@@ -205,14 +201,14 @@ form input[type="radio"] + label::before {
   background-image: url("data:image/svg+xml,%3Csvg height='20' viewBox='0 0 20 20' width='20' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='10' cy='10' fill='none' r='7.5' stroke='%23979797'/%3E%3C/svg%3E");
 }
 
-form input[type="radio"]:checked + label:before {
+#small_form input[type="radio"]:checked + label:before {
   background-image: url("data:image/svg+xml,%3Csvg height='20' viewBox='0 0 20 20' width='20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Ccircle cx='10' cy='10' fill='%233f8ae0' r='4'/%3E%3Ccircle cx='10' cy='10' r='7.5' stroke='%233f8ae0'/%3E%3C/g%3E%3C/svg%3E");
 }
 
 /*
  * textarea element 
  */
-form textarea {
+#small_form textarea {
   width: 100%;
   height: 80px;
   margin-bottom: 12px;
@@ -230,11 +226,11 @@ form textarea {
   transition: border-color var(--transition-function);
 }
 
-form textarea:hover {
+#small_form textarea:hover {
   border-color: var(--color-border-hover);
 }
 
-form textarea:focus {
+#small_form textarea:focus {
   border-color: var(--color-border-focus);
   outline: none;
 }
@@ -242,7 +238,7 @@ form textarea:focus {
 /*
  * select element 
  */
-form select {
+#small_form select {
   display: block;
   width: 100%;
   margin-bottom: 12px;
@@ -260,11 +256,11 @@ form select {
   transition: border-color var(--transition-function);
 }
 
-form select:hover {
+#small_form select:hover {
   border-color: var(--color-border-hover);
 }
 
-form select:focus {
+#small_form select:focus {
   border-color: var(--color-border-focus);
   outline: none;
 }
@@ -272,7 +268,7 @@ form select:focus {
 /*
  * button element 
  */
-form button {
+#small_form button {
   display: block;
   width: min-content;
   margin-top: 12px;
@@ -291,22 +287,22 @@ form button {
     opacity var(--transition-function);
 }
 
-form button[type="submit"] {
+#small_form button[type="submit"] {
   width: 100%;
 }
 
-form button[type="reset"] {
+#small_form button[type="reset"] {
   width: 100%;
   color: var(--color-text-btn);
   background-color: var(--color-btn-alert);
 }
 
-form button:hover,
-form button:focus {
+#small_form button:hover,
+#small_form button:focus {
   filter: brightness(90%);
   outline: none;
 }
 
-form button:active {
+#small_form button:active {
   opacity: 0.7;
 }
