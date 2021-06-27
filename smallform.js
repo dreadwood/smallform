@@ -4,6 +4,290 @@
     BEFOR_END: `beforeend`,
   };
 
+  const STYLE_FORM = `
+    #small_form {
+      --font-common: apple-system, system-ui, Helvetica Neue, Roboto, sans-serif;
+      --color-bg-form: #ffffff;
+      --color-bg-field: #f2f3f5;
+      --color-text-primary: #000000;
+      --color-text-ph: #818c99;
+      --color-text-label: #818c99;
+      --color-text-legend: #818c99;
+      --color-text-btn: #ffffff;
+      --color-btn-primary: #4986cc;
+      --color-btn-alert: #e64646;
+      --color-border: rgba(0, 0, 0, 0.12);
+      --color-border-hover: rgba(0, 0, 0, 0.24);
+      --color-border-focus: #3f8ae0;
+      --color-line-hover: rgba(0, 0, 0, 0.04);
+      --transition-function: 0.15s ease-out;
+    
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      min-width: 240px;
+      padding: 20px;
+      font-family: var(--font-common);
+      background-color: var(--color-bg-form);
+      border-radius: 8px;
+      box-sizing: border-box;
+    }
+    
+    #small_form *,
+    #small_form *::before,
+    #small_form *::after {
+      box-sizing: inherit;
+    }
+    
+    #small_form input[type="text"],
+    #small_form input[type="email"],
+    #small_form input[type="search"],
+    #small_form input[type="tel"],
+    #small_form input[type="number"],
+    #small_form input[type="password"] {
+      display: block;
+      width: 100%;
+      margin-bottom: 12px;
+      padding: 7px 11px;
+      font-size: 15px;
+      line-height: 20px;
+      color: var(--color-text-primary);
+      background-color: var(--color-bg-field);
+      border: 1px solid var(--color-border);
+      border-radius: 6px;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      transition: border-color var(--transition-function);
+    }
+    
+    #small_form input[type="number"]::-webkit-outer-spin-button,
+    #small_form input[type="number"]::-webkit-inner-spin-button {
+      margin: 0;
+      -webkit-appearance: none;
+    }
+    
+    #small_form input[type="number"] {
+      -moz-appearance: textfield;
+    }
+    
+    #small_form input::-webkit-contacts-auto-fill-button {
+      visibility: hidden;
+    }
+    
+    #small_form input[type="text"]:hover,
+    #small_form input[type="email"]:hover,
+    #small_form input[type="search"]:hover,
+    #small_form input[type="tel"]:hover,
+    #small_form input[type="number"]:hover,
+    #small_form input[type="password"]:hover {
+      border-color: var(--color-border-hover);
+    }
+    
+    #small_form input[type="text"]:focus,
+    #small_form input[type="email"]:focus,
+    #small_form input[type="search"]:focus,
+    #small_form input[type="tel"]:focus,
+    #small_form input[type="number"]:focus,
+    #small_form input[type="password"]:focus {
+      border-color: var(--color-border-focus);
+      outline: none;
+    }
+    
+    #small_form input[type="text"]::placeholder,
+    #small_form input[type="email"]::placeholder,
+    #small_form input[type="search"]::placeholder,
+    #small_form input[type="tel"]::placeholder,
+    #small_form input[type="number"]::placeholder,
+    #small_form input[type="password"]::placeholder {
+      color: var(--color-text-ph);
+    }
+    
+    #small_form label {
+      display: block;
+      margin-top: 12px;
+      margin-bottom: 6px;
+      font-size: 14px;
+      line-height: 18px;
+      color: var(--color-text-label);
+    }
+    
+    #small_form fieldset {
+      padding: 0;
+      margin: 0 0 6px 0;
+      border: none;
+    }
+    
+    #small_form legend {
+      margin: 0;
+      padding: 0;
+      margin-top: 12px;
+      margin-bottom: 6px;
+      font-size: 14px;
+      line-height: 18px;
+      color: var(--color-text-legend);
+    }
+    
+    #small_form input[type="checkbox"],
+    #small_form input[type="radio"] {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      margin: -1px;
+      padding: 0;
+      overflow: hidden;
+      white-space: nowrap;
+      border: 0;
+      clip: rect(0 0 0 0);
+      -webkit-clip-path: inset(100%);
+      clip-path: inset(100%);
+    }
+    
+    #small_form input[type="checkbox"] + label,
+    #small_form input[type="radio"] + label {
+      display: flex;
+      align-items: center;
+      margin-top: 2px;
+      margin-right: -10px;
+      margin-left: -10px;
+      padding: 7px 10px;
+      font-size: 15px;
+      line-height: 20px;
+      color: var(--color-text-primary);
+      cursor: pointer;
+      transition: background-color var(--transition-function);
+    }
+    
+    #small_form input[type="radio"] + label {
+      margin-bottom: 0;
+    }
+    
+    #small_form input[type="checkbox"] + label:hover,
+    #small_form input[type="radio"] + label:hover {
+      background-color: var(--color-line-hover);
+      border-radius: 6px;
+    }
+    
+    #small_form input[type="checkbox"] + label::before {
+      content: "";
+      display: block;
+      width: 20px;
+      height: 20px;
+      margin-right: 12px;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20' id='check_box_off_20'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M4.046 2.534C4.788 2.138 5.517 2 7.128 2h5.744c1.61 0 2.34.138 3.082.534.65.348 1.164.862 1.512 1.512.396.742.534 1.471.534 3.082v5.744c0 1.61-.138 2.34-.534 3.082a3.644 3.644 0 01-1.512 1.512c-.742.396-1.472.534-3.082.534H7.128c-1.61 0-2.34-.138-3.082-.534a3.644 3.644 0 01-1.512-1.512C2.138 15.212 2 14.482 2 12.872V7.128c0-1.61.138-2.34.534-3.082a3.645 3.645 0 011.512-1.512zm3.082.966c-1.531 0-1.962.136-2.374.357a2.145 2.145 0 00-.897.897c-.22.412-.357.843-.357 2.374v5.744c0 1.531.136 1.962.357 2.374.208.389.508.69.897.897.412.22.843.357 2.374.357h5.744c1.531 0 1.962-.136 2.374-.357.389-.208.69-.508.897-.897.22-.412.357-.843.357-2.374V7.128c0-1.531-.136-1.962-.357-2.374a2.145 2.145 0 00-.897-.897c-.412-.22-.843-.357-2.374-.357H7.128z' fill='%23aeb7c2'%3E%3C/path%3E%3C/svg%3E");
+    }
+    
+    #small_form input[type="checkbox"]:checked + label:before {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20' id='check_box_on_20'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M2.436 4.184C2 5.04 2 6.16 2 8.4v3.2c0 2.24 0 3.36.436 4.216a4 4 0 001.748 1.748C5.04 18 6.16 18 8.4 18h3.2c2.24 0 3.36 0 4.216-.436a4 4 0 001.748-1.748C18 14.96 18 13.84 18 11.6V8.4c0-2.24 0-3.36-.436-4.216a4 4 0 00-1.748-1.748C14.96 2 13.84 2 11.6 2H8.4c-2.24 0-3.36 0-4.216.436a4 4 0 00-1.748 1.748zm12.2 3.803a.9.9 0 10-1.272-1.274l-4.673 4.665-2.055-2.052A.9.9 0 005.364 10.6l2.691 2.687a.9.9 0 001.272 0l5.309-5.3z' fill='%235181b8'%3E%3C/path%3E%3C/svg%3E");
+    }
+    
+    #small_form input[type="radio"] + label::before {
+      content: "";
+      display: block;
+      width: 20px;
+      height: 20px;
+      margin-right: 12px;
+      background-image: url("data:image/svg+xml,%3Csvg height='20' viewBox='0 0 20 20' width='20' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='10' cy='10' fill='none' r='7.5' stroke='%23979797'/%3E%3C/svg%3E");
+    }
+    
+    #small_form input[type="radio"]:checked + label:before {
+      background-image: url("data:image/svg+xml,%3Csvg height='20' viewBox='0 0 20 20' width='20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Ccircle cx='10' cy='10' fill='%233f8ae0' r='4'/%3E%3Ccircle cx='10' cy='10' r='7.5' stroke='%233f8ae0'/%3E%3C/g%3E%3C/svg%3E");
+    }
+    
+    #small_form textarea {
+      width: 100%;
+      height: 80px;
+      margin-bottom: 12px;
+      padding: 7px 11px;
+      font-size: 15px;
+      line-height: 20px;
+      color: var(--color-text-primary);
+      background-color: var(--color-bg-field);
+      border: 1px solid var(--color-border);
+      border-radius: 6px;
+      resize: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      transition: border-color var(--transition-function);
+    }
+    
+    #small_form textarea:hover {
+      border-color: var(--color-border-hover);
+    }
+    
+    #small_form textarea:focus {
+      border-color: var(--color-border-focus);
+      outline: none;
+    }
+    
+    #small_form select {
+      display: block;
+      width: 100%;
+      margin-bottom: 12px;
+      padding: 7px 11px;
+      font-size: 15px;
+      line-height: 20px;
+      color: var(--color-text-primary);
+      background-color: var(--color-bg-field);
+      border: 1px solid var(--color-border);
+      border-radius: 6px;
+      cursor: pointer;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      transition: border-color var(--transition-function);
+    }
+    
+    #small_form select:hover {
+      border-color: var(--color-border-hover);
+    }
+    
+    #small_form select:focus {
+      border-color: var(--color-border-focus);
+      outline: none;
+    }
+    
+    #small_form button {
+      display: block;
+      width: min-content;
+      margin-top: 12px;
+      padding: 6px 16px 8px 16px;
+      font-family: inherit;
+      font-size: 15px;
+      line-height: 20px;
+      font-weight: 500;
+      text-align: center;
+      color: var(--color-text-btn);
+      background-color: var(--color-btn-primary);
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: filter var(--transition-function),
+        opacity var(--transition-function);
+    }
+    
+    #small_form button[type="submit"] {
+      width: 100%;
+    }
+    
+    #small_form button[type="reset"] {
+      width: 100%;
+      color: var(--color-text-btn);
+      background-color: var(--color-btn-alert);
+    }
+    
+    #small_form button:hover,
+    #small_form button:focus {
+      filter: brightness(90%);
+      outline: none;
+    }
+    
+    #small_form button:active {
+      opacity: 0.7;
+    }
+  `;
+
   const getClassNameAttr = (data) => (data ? `class="${data}"` : "");
   const getAutocompleteAttr = (data) => `autocomplete="${data ? data : "off"}"`;
   const getRequiredAttr = (data) => (data ? "required" : "");
@@ -16,6 +300,7 @@
       : "";
 
     return `<form 
+      id="small_form"
       action="${data.url}" 
       ${getClassNameAttr(data.class)}
       ${getAutocompleteAttr(data.autocomplete)}
@@ -24,6 +309,10 @@
     >
       <button type="submit">${data.text}</button>
       ${btnReset}
+
+      <style>
+        ${STYLE_FORM}
+      </style>
     </form>`;
   };
 
@@ -126,45 +415,49 @@
   ) => container.insertAdjacentHTML(place, template);
 
   const generateForm = (container, json) => {
-    const data = JSON.parse(json);
-    container.textContent = "";
-    renderTemplate(container, createFormTemplate(data.submit));
+    try {
+      const data = JSON.parse(json);
+      container.textContent = "";
+      renderTemplate(container, createFormTemplate(data.submit));
 
-    const formElement = container.querySelector("form");
-    if (data.textarea) {
-      data.textarea
-        .reverse()
-        .forEach((textareaValue) =>
-          renderTemplate(
-            formElement,
-            createTextareaValueTemplate(textareaValue),
-            RenderPosition.AFTER_BEGIN
-          )
-        );
-    }
+      const formElement = container.querySelector("form");
+      if (data.textarea) {
+        data.textarea
+          .reverse()
+          .forEach((textareaValue) =>
+            renderTemplate(
+              formElement,
+              createTextareaValueTemplate(textareaValue),
+              RenderPosition.AFTER_BEGIN
+            )
+          );
+      }
 
-    if (data.select) {
-      data.select
-        .reverse()
-        .forEach((selectValue) =>
-          renderTemplate(
-            formElement,
-            createSelectValueTemplate(selectValue),
-            RenderPosition.AFTER_BEGIN
-          )
-        );
-    }
+      if (data.select) {
+        data.select
+          .reverse()
+          .forEach((selectValue) =>
+            renderTemplate(
+              formElement,
+              createSelectValueTemplate(selectValue),
+              RenderPosition.AFTER_BEGIN
+            )
+          );
+      }
 
-    if (data.inputs) {
-      data.inputs
-        .reverse()
-        .forEach((input) =>
-          renderTemplate(
-            formElement,
-            createInputValueTemplate(input),
-            RenderPosition.AFTER_BEGIN
-          )
-        );
+      if (data.inputs) {
+        data.inputs
+          .reverse()
+          .forEach((input) =>
+            renderTemplate(
+              formElement,
+              createInputValueTemplate(input),
+              RenderPosition.AFTER_BEGIN
+            )
+          );
+      }
+    } catch (err) {
+      throw new Error("JSON file processing error. " + err);
     }
   };
 
