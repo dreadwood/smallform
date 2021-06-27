@@ -1,4 +1,6 @@
 (() => {
+  "use strict";
+
   const RenderPosition = {
     AFTER_BEGIN: `afterbegin`,
     BEFOR_END: `beforeend`,
@@ -390,7 +392,7 @@
     return `${createLabelTagTemplate(data)}
     <select 
       id="${data.id}" 
-      name="${data.name} 
+      name="${data.name}" 
       ${getClassNameAttr(data.class)}
     >
       ${optionTemplates}
