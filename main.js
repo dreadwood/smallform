@@ -1,5 +1,4 @@
 import { generationMock } from "/mock.js";
-import { generateForm } from "/form.js";
 
 const exampleElement = document.querySelector(".example");
 
@@ -12,16 +11,14 @@ if (exampleElement) {
   inputElement.textContent = generationMock();
 
   btnElement.addEventListener("click", () => {
-    generateForm(outputElement, inputElement.value);
+    SmallForm.create(outputElement, inputElement.value);
   });
 
   fileElement.addEventListener("change", (evt) => {
     const file = evt.target.files[0];
-    console.dir(file);
-
     const reader = new FileReader();
     reader.addEventListener("load", () => {
-      generateForm(outputElement, reader.result);
+      SmallForm.create(outputElement, reader.result);
     });
     reader.readAsText(file);
   });
