@@ -34,8 +34,21 @@ input[type="radio"].visually-hidden {
 }
 
 .example__header {
+  display: flex;
+  align-items: center;
   padding-top: 24px;
   padding-bottom: 24px;
+}
+
+.example__icon {
+  flex-shrink: 0;
+  margin-right: 10px;
+  width: 60px;
+  height: 60px;
+}
+
+.example__header-wrp {
+
 }
 
 .example__title {
@@ -116,6 +129,11 @@ input[type="radio"].visually-hidden {
 @media (max-width: 767px) {
   .example__header {
     padding-top: 0;
+  }
+
+  .example__title {
+    font-size: 30px;
+    line-height: 38px;
   }
 
   .example__fields {
